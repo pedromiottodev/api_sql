@@ -1,0 +1,65 @@
+###create user
+POST http://localhost:3333/users
+Content-Type: application/json
+
+{
+  "name": "Madonna"
+}
+
+
+###create course
+POST http://localhost:3333/courses
+Content-Type: application/json
+
+{
+  "name": "Curso de JavaScript"
+}
+
+
+###list users
+GET http://localhost:3333/users
+
+
+###list courses
+GET http://localhost:3333/courses
+
+
+###create progress
+POST http://localhost:3333/progress
+Content-Type: application/json
+
+{
+  "user_id": "38d01c10-bdf3-433d-9a7d-52653bf41770",
+  "course_id": "2c09dcff-fc8b-4ce3-bf54-bcfbc3775de0",
+  "percentual": 21
+}
+
+
+###create registration
+POST http://localhost:3333/registration
+Content-Type: application/json
+
+{
+  "user_id": "38d01c10-bdf3-433d-9a7d-52653bf41770",
+  "course_id": "2c09dcff-fc8b-4ce3-bf54-bcfbc3775de0"
+}
+
+
+###get progress by id
+GET http://localhost:3333/progress/3645166c-bd60-4d41-9c31-132916683c74
+
+
+###usuários de um curso
+GET http://localhost:3333/courses/2c09dcff-fc8b-4ce3-bf54-bcfbc3775de0
+
+
+###cursos de um usuário
+GET http://localhost:3333/courses/user/3645166c-bd60-4d41-9c31-132916683c74
+
+
+###média de progresso e cursos terminados
+GET http://localhost:3333/courses/progress/3645166c-bd60-4d41-9c31-132916683c74
+
+
+###ranking por média de progresso
+GET http://localhost:3333/users/ranking
