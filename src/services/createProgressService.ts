@@ -17,7 +17,7 @@ export class CreateProgressService {
         const resultVerify = await pool.query(verifySQL, [user_id, course_id])
 
         if (resultVerify.rowCount === 0) {
-            return { message: "Você não pode realizar o progresso de um curso em que o usuário não está matriculado" }
+            return { message: "Você não pode realizar o progresso de um curso em que não está matriculado" }
         }
 
         const sql = `
