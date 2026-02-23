@@ -4,7 +4,7 @@ export class UserRankingService {
     async execute() {
 
         const sql = `
-        SELECT u.id, u.name, AVG(percentual) as progress_media
+        SELECT u.id, u.name, AVG(p.percentual) as progress_media
         FROM progress as p
         JOIN users as u on p.user_id = u.id
         GROUP BY u.id, u.name
@@ -15,4 +15,3 @@ export class UserRankingService {
         return result.rows
     }
 }
-

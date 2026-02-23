@@ -6,9 +6,9 @@ const ProgressValidator = z.object({
     user_id: z.uuid(),
     course_id: z.uuid(),
     percentual: z.number("O valor deve ser um número inteiro")
-    .int("O valor deve ser um número inteiro")
-    .min(0, "Informe um valor entre 0 e 100")
-    .max(100, "Informe um valor entre 0 e 100")
+        .int("O valor deve ser um número inteiro")
+        .min(0, "Informe um valor entre 0 e 100")
+        .max(100, "Informe um valor entre 0 e 100")
 })
 
 export class CreateProgressController {

@@ -3,7 +3,7 @@ POST http://localhost:3333/users
 Content-Type: application/json
 
 {
-  "name": "Madonna"
+  "name": "TESTE"
 }
 
 
@@ -40,7 +40,7 @@ POST http://localhost:3333/registration
 Content-Type: application/json
 
 {
-  "user_id": "38d01c10-bdf3-433d-9a7d-52653bf41770",
+  "user_id": "257fd463-7b64-4249-a94b-3b5c650415e8",
   "course_id": "2c09dcff-fc8b-4ce3-bf54-bcfbc3775de0"
 }
 

@@ -3,8 +3,7 @@ import { z } from "zod"
 import { CreateCourseService } from "../services/createCourseService"
 
 const CourseValidator = z.object({
-    name: 
-z.string("O nome do curso precisa ser uma string").min(1, "O nome do curso não pode ser vazio")
+    name: z.string("O nome do curso precisa ser uma string").min(1, "O nome do curso não pode ser vazio")
 })
 
 export class CreateCourseController {

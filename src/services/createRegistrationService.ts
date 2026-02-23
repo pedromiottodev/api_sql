@@ -8,6 +8,18 @@ type CreateRegistrationInput = {
 
 export class CreateRegistrationService {
     async execute({user_id, course_id}: CreateRegistrationInput) {
+        
+        const verifySQL = `
+            SELECT COUNT(*) 
+            FROM registration
+            WHERE user_id = $1
+        `
+        const resultVerify = await pool.query(verifySQL, [user_id])
+
+        if (resultVerify.rowCount === null) {
+            return { message: "Você já está matriculado neste curso" }
+        }
+
         const sql = `
         INSERT INTO registration (user_id, course_id)
         VALUES ($1, $2)
