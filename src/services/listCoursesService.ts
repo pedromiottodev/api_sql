@@ -4,7 +4,7 @@ export class ListCoursesService {
     async execute() {
         const sql = `
         SELECT *
-        FROM course
+        FROM courses
         ORDER BY name asc
         `
         const result = await pool.query(sql)

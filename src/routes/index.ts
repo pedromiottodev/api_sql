@@ -5,6 +5,7 @@ import { ListUsersController } from "../controllers/listUsersController"
 import { CreateCourseController } from "../controllers/createCourseController"
 import { ListCoursesController } from "../controllers/listCoursesController"
 import { CreateProgressController } from "../controllers/createProgressController"
+import { UpdateProgressController } from "../controllers/updateProgressController" 
 import { CreateRegistrationController } from "../controllers/createResgistrationController"
 import { GetProgressByIdController } from "../controllers/getProgressByIdController"
 import { GetUsersOfACourseController } from "../controllers/getUsersOfACourseController"
@@ -17,6 +18,7 @@ export const router = Router()
 const createUserController = new CreateUserController()
 const listUsersController = new ListUsersController()
 const createCourseController = new CreateCourseController()
+const updateProgressController = new UpdateProgressController()
 const listCoursesController = new ListCoursesController()
 const createProgressController = new CreateProgressController()
 const createRegistrationController = new CreateRegistrationController()
@@ -170,6 +172,60 @@ router.get("/courses", (req, res) => listCoursesController.handle(req, res))
  *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post("/progress", (req, res) => createProgressController.handle(req, res))
+
+//UPDATE PROGRESS
+/**
+ * @swagger
+ * /progress/update:
+ *   put:
+ *     tags: [Progress]
+ *     summary: Atualiza o progresso de um curso
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - user_id
+ *               - course_id
+ *               - registration_id
+ *               - percentage
+ *             properties:
+ *               user_id:
+ *                 type: string
+ *                 format: uuid
+ *                 example: 4b1d177c-edb0-409c-b20b-5b5974973779
+ *               course_id:
+ *                 type: string
+ *                 format: uuid
+ *                 example: cd09ea94-fb9b-4cc0-8d1e-9f3a3cc2de12
+ *               registration_id:
+ *                 type: string
+ *                 format: uuid
+ *                 example: ebb7845e-085d-41b5-a08c-ff8d559bd961
+ *               percentage:
+ *                 type: integer
+ *                 minimum: 0
+ *                 maximum: 100
+ *                 example: 80
+ *     responses:
+ *       200:
+ *         description: Progresso atualizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 registration_id:
+ *                   type: string
+ *                   format: uuid
+ *                 percentage:
+ *                   type: integer
+ *       400:
+ *         description: Usuário não matriculado no curso
+ */
+router.put("/progress/update", (req, res) => updateProgressController.handle(req, res))
 
 //REGISTRATION ROUTE
 /**

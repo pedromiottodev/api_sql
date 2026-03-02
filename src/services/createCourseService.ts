@@ -7,7 +7,7 @@ type CreateCourseInput = {
 export class CreateCourseService {
     async execute({name}: CreateCourseInput) {
       const sql = `
-      INSERT INTO course (name)
+      INSERT INTO courses (name)
       VALUES ($1)
       RETURNING id, name
       `

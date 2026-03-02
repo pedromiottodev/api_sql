@@ -4,11 +4,11 @@ export class UserRankingService {
     async execute() {
 
         const sql = `
-        SELECT u.id, u.name, AVG(p.percentual) as progress_media
-        FROM progress as p
-        JOIN users as u on p.user_id = u.id
+        SELECT u.id, u.name, COALESCE(AVG(p.percentage), 0) AS progress_media
+        FROM registrations AS r
+        JOIN progress AS p on r.id = p.registration_id
+        JOIN users AS u on r.user_id = u.id
         GROUP BY u.id, u.name
-        ORDER BY progress_media DESC
         `
         const result = await pool.query(sql)
 

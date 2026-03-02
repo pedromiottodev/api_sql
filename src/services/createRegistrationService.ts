@@ -11,7 +11,7 @@ export class CreateRegistrationService {
         
         const verifySQL = `
             SELECT COUNT(*) 
-            FROM registration
+            FROM registrations
             WHERE user_id = $1
         `
         const resultVerify = await pool.query(verifySQL, [user_id])
@@ -21,9 +21,9 @@ export class CreateRegistrationService {
         }
 
         const sql = `
-        INSERT INTO registration (user_id, course_id)
+        INSERT INTO registrations (user_id, course_id)
         VALUES ($1, $2)
-        RETURNING user_id, course_id, created_at
+        RETURNING id, user_id, course_id, created_at
         `
         const result = await pool.query(sql, [user_id, course_id])
 
