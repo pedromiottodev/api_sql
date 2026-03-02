@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { z } from "zod"
-import { CreateProgressService } from "../services/createProgressService"
+import { UpdateProgressService } from "../services/updateProgressService"
 
 const ProgressValidator = z.object({
     user_id: z.uuid(),
@@ -12,7 +12,7 @@ const ProgressValidator = z.object({
         .max(100, "Informe um valor entre 0 e 100")
 })
 
-export class CreateProgressController {
+export class UpdateProgressController {
     async handle(req: Request, res: Response) {
         const parsed = ProgressValidator.safeParse(req.body)
 
@@ -21,9 +21,9 @@ export class CreateProgressController {
             return res.status(400).json(errors)
         }
 
-        const createProgressService = new CreateProgressService()
+        const updateProgressService = new UpdateProgressService()
 
-        const result = await createProgressService.execute(parsed.data)
+        const result = await updateProgressService.execute(parsed.data)
 
         return res.status(201).json(result)
     }

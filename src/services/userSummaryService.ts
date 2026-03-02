@@ -3,12 +3,27 @@ import { pool } from "../db"
 export class UserSummaryService {
     async execute(user_id: string) {
 
-        const total_courses = await pool.query('SELECT COUNT(user_id) AS total FROM registration WHERE user_id = $1', [user_id])
+        const total_courses = await pool.query(`
+            SELECT COUNT(*) AS total
+            FROM registrations 
+            WHERE user_id = $1`, 
+            [user_id])
 
-        const completed_courses = await pool.query('SELECT COUNT(*) AS total FROM progress WHERE user_id = $1 AND percentual = 100', [user_id])
+        const completed_courses = await pool.query(`
+            SELECT COUNT(*) AS total
+            FROM progress AS p
+            JOIN registrations AS r ON p.registration_id = r.id
+            JOIN users AS u on r.user_id = u.id
+            WHERE r.user_id = $1 AND p.percentage = 100`, 
+            [user_id])
 
-        const media = await pool.query('SELECT COALESCE(AVG(percentual), 0) AS media FROM progress WHERE user_id = $1', [user_id])
-
+        const media = await pool.query(`
+            SELECT COALESCE(AVG(p.percentage), 0) AS media
+            FROM progress p
+            JOIN registrations r ON r.id = p.registration_id
+            WHERE r.user_id = $1`,
+            [user_id])
+        
         return {
             total_cursos: total_courses.rows[0].total,
             cursos_concluidos: completed_courses.rows[0].total,

@@ -3,7 +3,7 @@ POST http://localhost:3333/users
 Content-Type: application/json
 
 {
-  "name": "TESTE"
+  "name": "Luca Watson"
 }
 
 
@@ -12,7 +12,7 @@ POST http://localhost:3333/courses
 Content-Type: application/json
 
 {
-  "name": "Curso de JavaScript"
+  "name": "Curso de C"
 }
 
 
@@ -24,42 +24,53 @@ GET http://localhost:3333/users
 GET http://localhost:3333/courses
 
 
-###create progress
-POST http://localhost:3333/progress
-Content-Type: application/json
-
-{
-  "user_id": "38d01c10-bdf3-433d-9a7d-52653bf41770",
-  "course_id": "2c09dcff-fc8b-4ce3-bf54-bcfbc3775de0",
-  "percentual": 21
-}
-
-
 ###create registration
 POST http://localhost:3333/registration
 Content-Type: application/json
 
 {
-  "user_id": "257fd463-7b64-4249-a94b-3b5c650415e8",
-  "course_id": "2c09dcff-fc8b-4ce3-bf54-bcfbc3775de0"
+  "user_id": "7a1a2533-11b4-46ab-bc44-0116643d9b91",
+  "course_id": "938ac966-6a64-4203-b0a7-0c1d95823f63"
 }
 
 
-###get progress by id
-GET http://localhost:3333/progress/3645166c-bd60-4d41-9c31-132916683c74
+###create progress
+POST http://localhost:3333/progress
+Content-Type: application/json
+
+{
+  "user_id": "7a1a2533-11b4-46ab-bc44-0116643d9b91",
+  "course_id": "938ac966-6a64-4203-b0a7-0c1d95823f63",
+  "registration_id": "a6143dbd-599e-450b-bfd1-863186dfd30b",
+  "percentage": 15
+}
+
+###update progress
+PUT http://localhost:3333/progress/update
+Content-Type: application/json
+
+{
+  "user_id": "7a1a2533-11b4-46ab-bc44-0116643d9b91",
+  "course_id": "938ac966-6a64-4203-b0a7-0c1d95823f63",
+  "registration_id": "a6143dbd-599e-450b-bfd1-863186dfd30b",
+  "percentage": 8
+}
 
 
-###usuários de um curso
-GET http://localhost:3333/courses/2c09dcff-fc8b-4ce3-bf54-bcfbc3775de0
+###get progress by user_id
+GET http://localhost:3333/progress/07042196-265e-4965-826f-9bd25809119f
 
 
-###cursos de um usuário
-GET http://localhost:3333/courses/user/3645166c-bd60-4d41-9c31-132916683c74
+###usuários de um curso (user_id)
+GET http://localhost:3333/courses/938ac966-6a64-4203-b0a7-0c1d95823f63
 
 
-###média de progresso e cursos terminados
-GET http://localhost:3333/courses/progress/3645166c-bd60-4d41-9c31-132916683c74
+###cursos de um usuário (user_id)
+GET http://localhost:3333/courses/user/5baa52ed-2c8f-4d59-aa09-64eafc1ad4df
 
 
-###ranking por média de progresso
+###média de progresso e cursos terminados(resumo)
+GET http://localhost:3333/courses/progress/7a1a2533-11b4-46ab-bc44-0116643d9b91
+
+###ranking  de usuários por média de progresso
 GET http://localhost:3333/users/ranking
